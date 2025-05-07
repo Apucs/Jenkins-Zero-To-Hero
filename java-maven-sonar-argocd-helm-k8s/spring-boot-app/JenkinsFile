@@ -64,11 +64,11 @@ pipeline {
                     echo "Updating deployment file with new image tag"
                     ls -ltr
 
-                    # Add workspace as safe directory
-                    git config --global --add safe.directory /var/lib/jenkins/workspace/jenkins-cicd
-                
                     # Install Git
                     apk add --no-cache git
+
+                    # Add workspace as safe directory
+                    git config --global --add safe.directory /var/lib/jenkins/workspace/jenkins-cicd
 
                     # Re-initialize Git and set remote
                     git init
