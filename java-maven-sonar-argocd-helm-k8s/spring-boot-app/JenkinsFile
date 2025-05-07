@@ -70,9 +70,11 @@ pipeline {
                     # Add workspace as safe directory
                     git config --global --add safe.directory /var/lib/jenkins/workspace/jenkins-cicd
 
-                    # Re-initialize Git and set remote
-                    git init
-                    git remote add origin https://github.com/${GIT_USER_NAME}/${GIT_REPO_NAME}.git
+                    # Ensure Git is properly initialized
+                    git status || git init
+                
+                    # Set/update the remote (using git remote set-url instead of add)
+                    git remote -v | grep -q origin && git remote set-url origin https://github.com/${GIT_USER_NAME}/${GIT_REPO_NAME}.git || git remote add origin https://github.com/${GIT_USER_NAME}/${GIT_REPO_NAME}.git
                 
                     git config user.email "apu3660@gmail.com"
                     git config user.name "Apucs"
