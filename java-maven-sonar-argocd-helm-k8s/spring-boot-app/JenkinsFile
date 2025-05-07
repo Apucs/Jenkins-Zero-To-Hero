@@ -62,7 +62,7 @@ pipeline {
             withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
                 sh '''
                     echo "Updating deployment file with new image tag"
-                    echo 'ls -ltr'
+                    sh 'ls -ltr'
                     git config user.email "apu3660@gmail.com"
                     git config user.name "Apucs"
                     BUILD_NUMBER=${BUILD_NUMBER}
